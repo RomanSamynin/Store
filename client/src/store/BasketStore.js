@@ -3,12 +3,23 @@ import {makeAutoObservable} from 'mobx';
 export default class BasketStore {
     constructor() {
         
-        localStorage.setItem('Id', JSON.stringify([]))
-        localStorage.setItem('like', JSON.stringify([]))
 
         this._basket = []
         this._totalPrice = []
-        this._like = [] 
+        this._like = []
+        
+
+        
+        if (((JSON.parse(localStorage.getItem('Id')))) == undefined) {
+            localStorage.setItem('Id', JSON.stringify([]))
+        }
+        
+        if (((JSON.parse(localStorage.getItem('like')))) == undefined) {
+            localStorage.setItem('like', JSON.stringify([]))
+        }
+
+
+        
 
         if (this._basket == false) {
             this._basket = ((JSON.parse(localStorage.getItem('Id'))))

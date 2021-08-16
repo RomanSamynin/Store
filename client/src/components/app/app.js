@@ -13,10 +13,7 @@ const App = observer(() => {
     const {basket} = useContext(Context)
 
     const [loading, setLoading] = useState(true)
-    // useEffect(() => {
-    //     localStorage.setItem('like', JSON.stringify([]))
-    //     localStorage.setItem('Id', JSON.stringify([]))
-    // }, [])
+ 
 
     useEffect(() => {
         check().then(data => {
@@ -26,7 +23,7 @@ const App = observer(() => {
     }, [])
 
     if (loading) {
-        return <Spinner animation={"grow"}/>
+        return <div className="spinner_Home"><Spinner animation={"border"} variant={"secondary"}/></div>
     }
 
     return (

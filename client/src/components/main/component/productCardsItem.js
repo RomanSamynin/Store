@@ -10,6 +10,7 @@ const ProductCardsItem = observer( ({device}) => {
     const {basket} = useContext(Context)
 
     const [showLike, setShowLike] = useState(false)
+
     
 
     const clickShowLike = () => setShowLike(!showLike)
@@ -21,7 +22,6 @@ const ProductCardsItem = observer( ({device}) => {
     },[]);
 
     useEffect(()=> {
-
         if (showLike) {
             basket.setLike(device.id)
         } else {
@@ -54,7 +54,7 @@ const ProductCardsItem = observer( ({device}) => {
             <img className="product_card_img" src={process.env.REACT_APP_API_URL + device.img}></img>
             <div className="discription">
                 <h1>{device.name}</h1>
-                <h3>Price {device.price}</h3>
+                <h3>Price {device.price} $</h3>
                 <div className="discription_price">
                     <h2 className="priceNow"></h2>
                     <h2 className="priceTo"><div className="priceTo_line"></div></h2> 

@@ -26,7 +26,7 @@
 .productPage_wrap
     display: flex
     align-items: center
-    justify-content: space-around
+    justify-content: space-evenly
 
 .ProductPage_btn
     margin-top: 20px
@@ -46,4 +46,27 @@
         background: none
         color: #E89F71
         border: 2px solid #E89F71
+
+@media screen and (max-width: 1180px)
+    .productPage_wrap
+        flex-direction: column
+    .ProductPage_wrap_descr
+        margin-top: 20px
+    article
+        margin-top: 50px !important
+
+@media screen and (max-width: 960px)
+    .ProductPage_wrap_descr
+        margin-top: 50px
+    article
+        margin-top: 0 !important
+        margin-bottom: 100 !important
+
+@media screen and (max-width: 620px)
+    .ProductPage_wrap_descr
+        margin-top: 0px
+
+@media screen and (max-width: 480px)
+    .ProductPage_wrap_descr
+        margin-top: -20px
 

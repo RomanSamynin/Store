@@ -12,7 +12,7 @@ const ProductBox = observer( () => {
     return (
         <div className="products_box">
             {device.devices.map(device =>
-            <ProductCardsItem key={device.id} device={device}/>
+                <ProductCardsItem key={device.id} device={device}/>
             )}
         </div>
     );

@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import SubHeader from './SubheaderPanel';
-import { ADMIN_ROUTE, INSPIRATIONS_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, BASKET_ROUTE, LIKE_ROUTE} from '../../../utils/consts';
+import { ADMIN_ROUTE, INSPIRATIONS_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, BASKET_ROUTE, LIKE_ROUTE, ROOMS_ROUTE} from '../../../utils/consts';
 import {NavLink} from "react-router-dom";
 import {observer} from 'mobx-react-lite';
 import {Context} from '../../../index';
@@ -12,7 +12,7 @@ import './NavBar.sass';
 
 
 
-const Navbar = observer( () => {
+const Navbar = observer( ({setShowModal}) => {
     const {user} = useContext(Context)
     const {device} = useContext(Context)
     const history = useHistory()
@@ -99,11 +99,13 @@ const Navbar = observer( () => {
                                             </button>
                                             <SubHeader isVisible={isVisible} setVisible={setVisible}/> 
                                         </li>
-                                        <li><button 
+                                        <li>
+                                            <NavLink
+                                            to={ROOMS_ROUTE}
                                             className="menu_body_list_link"
                                             >
                                                 Rooms
-                                            </button>
+                                            </NavLink>
                                         </li>
                                         <li><NavLink to={INSPIRATIONS_ROUTE} className="menu_body_list_link">Inspiration</NavLink></li>
                                     </ul>
@@ -118,12 +120,12 @@ const Navbar = observer( () => {
                             <div className="icon col-1">
                                 <NavLink to={(basket.like != null && basket.like.length >= 1) ? LIKE_ROUTE : SHOP_ROUTE}>
                                 {(basket.like.length) ?
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="Red" xmlns="http://www.w3.org/2000/svg">
+                                    <svg width="24" height="24" viewBox="0 2 24 24" fill="Red" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11.9996 21.054C-8 9.99991 5.99999 -2.00009 11.9996 5.58797C18 -2.00009 32 9.99991 11.9996 21.054Z" stroke="Red" stroke-width="1.8"/>
                                     </svg>
                                     :
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M11.9996 21.054C-8 9.99991 5.99999 -2.00009 11.9996 5.58797C18 -2.00009 32 9.99991 11.9996 21.054Z" stroke="#262F56" stroke-width="1.8"/>
+                                    <svg width="24" height="24" viewBox="0 2 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11.9996 21.054C-8 9.99991 5.99999 -2.00009 11.9996 5.58797C18 -2.00009 32 9.99991 11.9996 21.054Z" stroke="Black" stroke-width="1.8"/>
                                     </svg>
                                 }
                                 </NavLink>
@@ -157,7 +159,7 @@ const Navbar = observer( () => {
                                     <button
                                         className="btn_Auth_item btnStyle" 
                                         variant={"outline-light"} 
-                                        onClick={() => history.push(LOGIN_ROUTE)}
+                                        onClick={() => setShowModal(true)}
                                     >
                                         Log In
                                     </button>

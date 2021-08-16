@@ -1,11 +1,12 @@
 import Inspirations from './pages/Inspirations';
+import Rooms from './pages/Rooms';
 import Shop from './pages/Shop';
 import Admin from './pages/Admin';
 import Basket from './pages/Basket';
 import Like from './pages/Like';
 import Auth from './pages/Auth';
 import ProductPage from './pages/ProductPage';
-import {ADMIN_ROUTE, INSPIRATIONS_ROUTE, SHOP_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, DEVICE_ROUTE, LIKE_ROUTE} from './utils/consts';
+import {ADMIN_ROUTE, INSPIRATIONS_ROUTE, SHOP_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, DEVICE_ROUTE, LIKE_ROUTE, ROOMS_ROUTE } from './utils/consts';
 
 
 export const authRoutes = [
@@ -36,6 +37,10 @@ export const publicRoutes = [
     {
         path: INSPIRATIONS_ROUTE,
         Component: Inspirations
+    },
+    {
+        path: ROOMS_ROUTE,
+        Component: Rooms
     },
     {
         path: BASKET_ROUTE,

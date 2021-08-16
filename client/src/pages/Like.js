@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useContext, useMemo} from 'react';
 import {Context} from '../index';
 import { observer } from 'mobx-react-lite';
-import Navbar from '../components/header/components/NavBar';
+import Header from '../components/header';
+import Footer from '../components/footer';
 import LikeItem from '../components/like/likeItem'
 import {createBasket} from "../http/basketApi";
 import { fetchOneDevice } from '../http/deviceApi';
@@ -18,15 +19,16 @@ const Like = observer( () => {
     return (
         <div>
             <div className="header_bg">
-            <Navbar/>
-                <div className="wrapper">
-                    {(basket.like.length) ? <div></div> : <Redirect to={SHOP_ROUTE}/>}
-                    <div className="basket_box">
-                        {basket.like.map(data =>
-                        <LikeItem key={data.id} Like={data}/>
-                        )}
+                <Header/>
+                    <div className="wrapper">
+                        {(basket.like.length) ? <div></div> : <Redirect to={SHOP_ROUTE}/>}
+                        <div className="basket_box">
+                            {basket.like.map(data =>
+                            <LikeItem key={data.id} Like={data}/>
+                            )}
+                        </div>
                     </div>
-                </div>
+                <Footer/>
             </div>
         </div>
     )

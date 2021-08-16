@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {Context} from '../index';
-import Navbar from '../components/header/components/NavBar';
+import Header from '../components/header/header';
+import Footer from '../components/footer';
 import {useParams} from 'react-router-dom';
 import { fetchOneDevice } from '../http/deviceApi';
 import { observer } from 'mobx-react-lite';
@@ -16,10 +17,15 @@ const ProductPage = observer( () => {
     const updateOpenHeader = (value) => {
         setOpen(value)
     }
-    
+
+
     useEffect( () => {
         fetchOneDevice(id).then(data => setDevice(data))
     }, [])
+
+    // device.info.map(info => {
+    //     return console.log(info.id, info.title, info.description)
+    //    })
     return (
         <div>
             <div className='header_bg'>
@@ -28,7 +34,7 @@ const ProductPage = observer( () => {
                         {isOpen ? 
                             <div></div>
                             :
-                            <Navbar/>
+                            <Header/>
                         }
                         <div className="productPage_wrap">
                             <article>
@@ -37,7 +43,8 @@ const ProductPage = observer( () => {
                             <div className="ProductPage_wrap_descr">
                                 <h2>{device.name}</h2>
                                 {/* <h3>{device.rating}</h3> */}
-                                <h2>Price: {device.price}</h2>
+                                <h2 className="bg_grey">Price: {device.price} $</h2>
+                                <div className="bg_grey">We believe that your home AND your payments should be comfortable, so explore our no-interest financing or no-credit needed* lease-to-own!</div>
                                 <button
                                     className='ProductPage_btn' 
                                     onClick={() => basket.setBasket(id, 1)}
@@ -52,6 +59,7 @@ const ProductPage = observer( () => {
                                 </div> */}
                             </div>
                         </div>
+                        <Footer/>
                     </div>
                 </div>
             </div>

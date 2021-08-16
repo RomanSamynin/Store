@@ -1,7 +1,10 @@
+
+    
 .slick-slider
     position: relative
 
 .slick-list
+    width: 90%
     
 .slick-track
     display: flex
@@ -35,7 +38,7 @@
     list-style-type: none
     position: absolute
     display: flex!important
-    right: 600px
+    right: 40vw
     top: -60px
 
 .slick-slider .slick-dots .slick-active button
@@ -57,9 +60,36 @@
     outline: none
 
 .slider_box
-    margin-top: 240px
-    margin-left: 250px
+    position: relative
+    margin-top: 250px
+    margin-left: 300px
 
+// media
+
+@media screen and (max-width: 1230px)
+    .slick-dots
+        right: 35vw
+
+
+@media screen and (max-width: 960px)
+    .slick-dots
+        display: none !important
+    .slick-arrow
+        display: none !important
+    .slider_box
+        margin-left: 0 !important
+    .slick-list
+        width: 100%
+        padding: 10px !important
+    .slick-track
+    .slider_box
+        margin: 0
+        margin-top: 150px !important
+        
+
+
+
+    
 
 
 

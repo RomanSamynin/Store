@@ -1,11 +1,11 @@
 import React, {useContext, useEffect, useState} from 'react';
 import SubHeader from './SubheaderPanel';
-import { ADMIN_ROUTE, INSPIRATIONS_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, BASKET_ROUTE } from '../../../utils/consts';
+import { ADMIN_ROUTE, INSPIRATIONS_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, BASKET_ROUTE, LIKE_ROUTE, ROOMS_ROUTE } from '../../../utils/consts';
 import {NavLink} from "react-router-dom";
 import {observer} from 'mobx-react-lite';
 import {Context} from '../../../index';
 import {useHistory} from 'react-router-dom';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import './NavBarMobile.sass';
 import './NavBar.sass';
 import { MenuToggle } from './menuToggle';
@@ -63,7 +63,17 @@ const NavBarMobile = observer( (props) => {
                         className="wrap_Header-Mobile">
                         <NavLink to={SHOP_ROUTE} className="logo col-1"> Funiro.</NavLink>
                         <div className="icon col-3 left_icon">
-                            <div className="icon_heart"></div>
+                            <NavLink to={(basket.like != null && basket.like.length >= 1) ? LIKE_ROUTE : SHOP_ROUTE}>
+                                {(basket.like.length) ?
+                                    <svg width="24" height="24" viewBox="0 2 24 24" fill="Red" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11.9996 21.054C-8 9.99991 5.99999 -2.00009 11.9996 5.58797C18 -2.00009 32 9.99991 11.9996 21.054Z" stroke="Red" stroke-width="1.8"/>
+                                    </svg>
+                                    :
+                                    <svg width="24" height="24" viewBox="0 2 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11.9996 21.054C-8 9.99991 5.99999 -2.00009 11.9996 5.58797C18 -2.00009 32 9.99991 11.9996 21.054Z" stroke="Black" stroke-width="1.8"/>
+                                    </svg>
+                                }
+                            </NavLink>
                             <NavLink to={Boolean(basket.basket.length) ? BASKET_ROUTE : SHOP_ROUTE} className="icon_basket">
                                 {basket.basket.length ?
                                     <div className="totalProducts">{basket.basket.length}</div>
@@ -102,20 +112,24 @@ const NavBarMobile = observer( (props) => {
                         } */}
                         <MenuToggle className="col-1" isOpen={isOpen} toggle={() => setOpen(!isOpen)}/>                  
                     </div>
-                    <div 
-                        className="Nav_Mobile">
-                        <motion.div
-                            onClick={() => setOpen(false)} 
-                            className="Nav_Mobile_bg"
-                            animate={{ opacity: isOpen ? 1 : 0 }}
-                            initial={{ opacity: 0 }}
-                            transition={{ 
-                                duration: 0.2,
-                                type: "tween"
-                            }}
-                        >
-                        </motion.div>
-                    </div>
+                    <AnimatePresence exitBeforeEnter>
+                        {isOpen &&
+                            <div className="Nav_Mobile">
+                                <motion.div
+                                    onClick={() => setOpen(false)} 
+                                    className="Nav_Mobile_bg"
+                                    animate={{ opacity: 1 }}
+                                    initial={{ opacity: 0 }}
+                                    transition={{ 
+                                        duration: 0.5,
+                                        type: "tween"
+                                    }}
+                                    exit={{ opacity: 0 }}
+                                >
+                                </motion.div>
+                            </div>
+                        }
+                    </AnimatePresence>
                     <motion.div 
                         className="Nav_Mobile_content"
                         animate={{ x: isOpen ? 0 : -500 }}
@@ -180,12 +194,17 @@ const NavBarMobile = observer( (props) => {
                                     <motion.li
                                         className="menu_Mobile_Body_Item"
                                         initial={{ marginTop: 0 }}
-                                        animate={{ marginTop: isVisible ? 160 : 0 }}
+                                        animate={{ marginTop: isVisible ? 110 : 0 }}
                                     >
                                         <button 
                                             className="menu_Mobile_link"
                                         >
-                                            Rooms
+                                            <NavLink
+                                            to={ROOMS_ROUTE}
+                                            className="menu_body_list_link"
+                                            >
+                                                Rooms
+                                            </NavLink>
                                         </button>
                                     </motion.li>
                                     <li className="menu_Mobile_Body_Item">

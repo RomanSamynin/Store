@@ -1,49 +1,113 @@
-.galleryWrap
-    margin-top: 70px
+
+// footer
+
+.lineFooter
+    background: #D8D8D8
+    height: 1px 
+    margin: 45px 0
+
+.footer_grid
+    justify-content: space-evenly
+    margin-bottom: 40px
     display: grid
-    gap: 16px
-    grid-template-columns: auto auto auto auto auto auto
-    grid-template-rows: auto auto auto  
-    grid-template-areas: "img_6 img_8 img_8 img_2 img_3 img_3 img_5" " img_7 img_7 img_9 img_2 img_3 img_3 img_5" "img_7 img_7 img_9 img_2 img_1 img_4 img_4"
+    gap: 30px
+    grid-template-columns: 250px 100px 100px 200px  300px
+    grid-template-areas: "funiro menu account social phone"
 
 
-        
-.img_1
-    grid-area: img_1
-    align-self: start
+.footer_Funiro
+    grid-area: funiro
 
-.img_2
-    grid-area: img_2
-    align-self: center
+.footer_Menu
+    grid-area: menu
 
-.img_3
-    grid-area: img_3
-    align-self: end
+.footer_Account
+    grid-area: account
 
-.img_4
-    grid-area: img_4
-    align-self: start
+.footer_Social
+    grid-area: social
 
-.img_5
-    grid-area: img_5
-    align-self: end
+.footer_Phone
+    grid-area: phone
 
-.img_6
-    grid-area: img_6
-    align-self: end
-
-.img_7
-    grid-area: img_7
-    align-self: start
-
-.img_8
-   grid-area: img_8
-   align-self: end
-
-.img_9
-    grid-area: img_9
-    align-self: start
+.auto
+    grid-area: auto
 
 
-    
+
+.footer_grid h1
+    color: rgba(0, 0, 0, 1)
+    font-family: Gilroy
+    font-size: 24px
+    font-style: normal
+    font-weight: 700
+    line-height: 29px
+    letter-spacing: 0em
+    text-align: left
+
+.footer_grid div
+    color: rgba(97, 97, 97, 1)
+    font-family: Gilroy
+    font-size: 16px
+    font-style: normal
+    font-weight: 400
+    line-height: 24px
+    letter-spacing: 0em
+    text-align: left
+
+.footer_grid input
+    outline: none
+    border: none
+    padding: 0 20px
+    background: rgba(244, 245, 247, 0.5)
+    border: none
+    height: 45px
+    width: 242px
+
+.footer_grid button
+    height: 45px
+    width: 46px
+    background: rgba(232, 159, 113, 1)
+    border: none
+
+.footer_Input
+    width: 295px
+
+.sign
+    display: flex
+    justify-content: center
+    color: rgba(97, 97, 97, 1)
+    font-family: Gilroy
+    font-size: 16px
+    font-style: normal
+    font-weight: 400
+    line-height: 24px
+    margin: -25px 0 25px
+
+@media screen and (max-width: 1160px)
+    .footer_grid
+        grid-template-rows: auto auto
+        grid-template-columns: 250px 100px 100px
+        grid-template-areas: "funiro menu account" "social phone phone"
+
+@media screen and (max-width: 680px)
+    .footer_grid
+        grid-template-rows: auto auto auto
+        grid-template-columns: 250px 100px 
+        grid-template-areas: "funiro menu" "account social" "phone phone"
+
+@media screen and (max-width: 480px)
+    .footer_grid
+        grid-template-rows: auto auto auto auto auto
+        grid-template-columns: 250px 
+        grid-template-areas: "funiro" "menu" "account" "social" "phone"
+
+
+
+
+
+
+
+
+
 

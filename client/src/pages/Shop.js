@@ -1,4 +1,5 @@
 import React, {useContext, useEffect} from 'react';
+import Slider from "../components/header/components/SimpleSlider";
 import Main from '../components/main';
 import Header from '../components/header';
 import Footer from '../components/footer'
@@ -56,9 +57,9 @@ const Shop = observer( () => {
 
     return (
         <div>
-            <Header/>
+            <Header Slider={Slider}/>
             <Main/> 
-            <Footer/> 
+            <Footer/>
         </div>
     )
 });
