@@ -3,13 +3,10 @@ import {makeAutoObservable} from 'mobx';
 export default class BasketStore {
     constructor() {
         
-
         this._basket = []
         this._totalPrice = []
         this._like = []
-        
-
-        
+         
         if (((JSON.parse(localStorage.getItem('Id')))) == undefined) {
             localStorage.setItem('Id', JSON.stringify([]))
         }
@@ -18,9 +15,6 @@ export default class BasketStore {
             localStorage.setItem('like', JSON.stringify([]))
         }
 
-
-        
-
         if (this._basket == false) {
             this._basket = ((JSON.parse(localStorage.getItem('Id'))))
         }
@@ -28,7 +22,6 @@ export default class BasketStore {
         if (this._like == false) {
             this._like = ((JSON.parse(localStorage.getItem('like'))))
         } 
-
 
         makeAutoObservable(this)
     }
@@ -43,7 +36,6 @@ export default class BasketStore {
             localStorage.setItem('Id', JSON.stringify(this._basket))
         }
     }
-
 
     deleteBasket(Id) {
         this._basket = this._basket.filter((id) => {
@@ -65,6 +57,7 @@ export default class BasketStore {
 
     setLike(like) {
         const itemIndex = this._like.findIndex(item => item == like)
+
         if (itemIndex < 0) {
             this._like.push(like)
             localStorage.setItem('like', JSON.stringify(this._like))
@@ -92,7 +85,5 @@ export default class BasketStore {
     get like() {
         return this._like
     }
-
-
-
+    
 }

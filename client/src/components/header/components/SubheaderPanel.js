@@ -1,9 +1,5 @@
-import React, {useContext, useState} from 'react';
-import { ADMIN_ROUTE, INSPIRATIONS_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, BASKET_ROUTE } from '../../../utils/consts';
-import {NavLink} from "react-router-dom";
-import {observer} from 'mobx-react-lite';
+import React, {useContext} from 'react';
 import {Context} from '../../../index';
-import {useHistory} from 'react-router-dom';
 import { motion, AnimatePresence, } from 'framer-motion';
 import './NavBar.sass'
 
@@ -11,9 +7,7 @@ const SubHeader = (props) => {
 
     const {isVisible, setVisible, mobile} = props;
     
-
     const {device} = useContext(Context)
-
 
     // Animation subHeader
 

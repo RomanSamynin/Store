@@ -31,41 +31,40 @@ const Basket = observer( ({Basket}) => {
     }, [])
 
     useMemo(() => basket.setBasket(Basket.id, count), [count]);
-    
 
     return (
-            <div className="wrapper">
-                <div className="container_block">
-                    <div className="itemBasket">
-                        {isMobile &&
+        <div className="wrapper">
+            <div className="container_block">
+                <div className="itemBasket">
+                    {isMobile &&
+                        <button 
+                            className="delete_Mobile_btn"
+                            onClick={() => basket.deleteBasket(Basket.id)}
+                            >
+                            Х
+                        </button>
+                    }
+                    <img className="imgBasket" src={process.env.REACT_APP_API_URL + device.img}></img>
+                    <div className="counterBasket">
+                        <div className="nameBasket">{device.name}</div>
+                        <div className="counterMobile">
+                            <button className="sendOrder" onClick={() => setCount(count - 1)}>-</button>
+                            <div className="totalProducts">{count}</div>
+                            <button className="sendOrder" onClick={() => setCount(count + 1)}>+</button>
+                        </div>
+                        <div className="totalCashItem">Price   {totalPriceItem} $</div>
+                        {!isMobile &&
                             <button 
-                                className="delete_Mobile_btn"
-                                onClick={() => basket.deleteBasket(Basket.id)}
-                                >
+                            className="sendOrder" 
+                            onClick={() => basket.deleteBasket(Basket.id)}
+                            >
                                 Х
                             </button>
                         }
-                        <img className="imgBasket" src={process.env.REACT_APP_API_URL + device.img}></img>
-                        <div className="counterBasket">
-                            <div className="nameBasket">{device.name}</div>
-                            <div className="counterMobile">
-                                <button className="sendOrder" onClick={() => setCount(count - 1)}>-</button>
-                                <div className="totalProducts">{count}</div>
-                                <button className="sendOrder" onClick={() => setCount(count + 1)}>+</button>
-                            </div>
-                            <div className="totalCashItem">Price   {totalPriceItem} $</div>
-                            {!isMobile &&
-                                <button 
-                                className="sendOrder" 
-                                onClick={() => basket.deleteBasket(Basket.id)}
-                                >
-                                    Х
-                                </button>
-                            }
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
     )
 });
     

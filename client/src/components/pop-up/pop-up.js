@@ -1,8 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from "framer-motion";
-import '../../pages/Auth.sass';
-
 import { observer } from 'mobx-react-lite';
+import '../../pages/Auth.sass';
 
 const Pop_up = observer( ({showModal, setShowModal, Children}) => {
     

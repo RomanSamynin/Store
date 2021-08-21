@@ -1,18 +1,17 @@
 import React, {useContext, useEffect} from 'react';
-import Slider from "../components/header/components/SimpleSlider";
-import Main from '../components/main';
-import Header from '../components/header';
-import Footer from '../components/footer'
 import {observer} from 'mobx-react-lite';
 import {Context} from '../index';
 import {fetchTypes} from '../http/deviceApi';
 import {fetchBrands} from '../http/deviceApi';
 import {fetchDevices} from '../http/deviceApi';
+import Slider from "../components/header/components/SimpleSlider";
+import Main from '../components/main';
+import Header from '../components/header';
+import Footer from '../components/footer'
 
 
 const Shop = observer( () => {
     const {device} = useContext(Context)
-    const {basket} = useContext(Context)
 
     useEffect(() => {
         fetchTypes().then(data => device.setTypes(data))

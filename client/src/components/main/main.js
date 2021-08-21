@@ -1,7 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './main.sass';
-import TypeBar from './component/TypeBar';
-import Rooms from './component/Rooms';
 import ProductBox from './component/productCards';
 import Up from '../up/up'
 import Pages from './component/Pages';
@@ -19,7 +17,7 @@ import img_7 from './content/Rectangle37.jpg';
 import img_8 from './content/Rectangle38.jpg';
 import img_9 from './content/Rectangle39.jpg';
 
-const Main = (loading) => {
+const Main = () => {
     return (
         <>
             <div className="wrapper">
@@ -57,14 +55,12 @@ const Main = (loading) => {
                     <h1 className="products_name">Our Products</h1>
                     <div>
                         <div className="products">
-                            {/* <TypeBar/> */}
                             <ProductBox/>
                         </div>
                     </div>
                     <Pages/>
                 </div>
                 <Up/>
-                {/* <Rooms/> */}
             </div>
             <div  className="galleryWrap">
                 <img className="img_1" src={img_1}></img>

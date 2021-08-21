@@ -10,8 +10,7 @@ import './app.sass';
 
 const App = observer(() => {
     const {user} = useContext(Context)
-    const {basket} = useContext(Context)
-
+ 
     const [loading, setLoading] = useState(true)
  
     useEffect(() => {

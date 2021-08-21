@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import SubHeader from './SubheaderPanel';
-import { ADMIN_ROUTE, INSPIRATIONS_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, BASKET_ROUTE, LIKE_ROUTE, ROOMS_ROUTE } from '../../../utils/consts';
+import { ADMIN_ROUTE, INSPIRATIONS_ROUTE, SHOP_ROUTE, BASKET_ROUTE, LIKE_ROUTE, ROOMS_ROUTE } from '../../../utils/consts';
 import {NavLink} from "react-router-dom";
 import {observer} from 'mobx-react-lite';
 import {Context} from '../../../index';
@@ -10,9 +10,6 @@ import jwt_decode from "jwt-decode";
 import './NavBarMobile.sass';
 import './NavBar.sass';
 import { MenuToggle } from './menuToggle';
-
-
-
 
 const NavBarMobile = observer( ({setShowModal}) => {
     const {user} = useContext(Context)
@@ -42,7 +39,6 @@ const NavBarMobile = observer( ({setShowModal}) => {
 // Animation arr header
     const controls = useAnimation();
     
-
     function arrRotate()  {
         controls.start(
             {
@@ -56,8 +52,6 @@ const NavBarMobile = observer( ({setShowModal}) => {
 
     const handleVisibility = () => setVisible(!isVisible);
   
-
-
     return (
         <div className="header">
             <div className="wrapper">

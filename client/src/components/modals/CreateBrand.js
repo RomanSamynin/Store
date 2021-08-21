@@ -12,6 +12,7 @@ const CreateBrand = ({show, onHide}) => {
             onHide()
         })
     }
+    
     return (
         <Modal
             show={show}

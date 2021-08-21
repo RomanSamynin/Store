@@ -1,20 +1,18 @@
-import React, {useContext, useState, useEffect, useMemo} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { observer } from 'mobx-react-lite';
 import { useMediaQuery } from 'react-responsive';
-import './productCards.sass';
 import {useHistory} from "react-router-dom";
 import {Context} from '../../../index';
 import {DEVICE_ROUTE} from "../../../utils/consts"
+import './productCards.sass';
 
 const ProductCardsItem = observer( ({device}) => {
-    const history = useHistory()
     const {basket} = useContext(Context)
 
     const [showLike, setShowLike] = useState(false)
 
+    const history = useHistory()
     const isMobile = useMediaQuery({ maxWidth: 960});
-
-    
 
     const clickShowLike = () => setShowLike(!showLike)
 

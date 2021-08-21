@@ -5,7 +5,9 @@ import {SHOP_ROUTE} from '../utils/consts';
 import {Context} from '../index';
 
 const AppRouter = () => {
+
     const {user} = useContext(Context)
+    
     return (
         <Switch>
             {user.isAuth && authRoutes.map(({path, Component}) =>

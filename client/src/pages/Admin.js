@@ -4,9 +4,11 @@ import CreateDevice from "../components/modals/CreateDevice";
 import CreateType from "../components/modals/CreateType";
 
 const Admin = () => {
+    
     const [brandVisible, setBrandVisible] = useState(false)
     const [typeVisible, setTypeVisible] = useState(false)
     const [deviceVisible, setDeviceVisible] = useState(false)
+
     return (
         <div>
             <button onClick={() => setTypeVisible(true)}>Добавит тип</button>

@@ -1,21 +1,16 @@
-import React, {useState, useEffect, useContext, useMemo} from 'react';
+import React, { useContext } from 'react';
 import {Context} from '../index';
 import { observer } from 'mobx-react-lite';
+import { SHOP_ROUTE } from '../utils/consts';
+import {Redirect} from "react-router-dom";
 import Header from '../components/header';
 import Footer from '../components/footer';
 import LikeItem from '../components/like/likeItem'
-import {createBasket} from "../http/basketApi";
-import { fetchOneDevice } from '../http/deviceApi';
-import { ADMIN_ROUTE, INSPIRATIONS_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, BASKET_ROUTE } from '../utils/consts';
-import {Redirect} from "react-router-dom";
 import './Basket.sass';
-
 
 const Like = observer( () => {
     const {basket} = useContext(Context)
-    const {user} = useContext(Context)
     
-
     return (
         <div>
             <div className="header_bg">

@@ -4,7 +4,6 @@ import React, {useEffect} from 'react';
 import arr from'./content/Right16px.svg';
 import './up.sass';
 
-
 const Up = () => {
     const controls = useAnimation();
     const y = useScrollY();
@@ -13,7 +12,6 @@ const Up = () => {
         controls.start({ opacity: y / document.body.scrollHeight });
     }, [y, controls]);
     
-
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,

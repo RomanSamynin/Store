@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {observer} from 'mobx-react-lite';
 import Navbar from './components/NavBar';
 import { useMediaQuery } from 'react-responsive';
@@ -12,7 +12,6 @@ const Header = observer(({Slider}) => {
     const isMobile = useMediaQuery({ maxWidth: 960});
 
     const [showModal, setShowModal] = useState(false)
-
 
     return (
         <div className="header_bg">

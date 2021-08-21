@@ -9,9 +9,11 @@ export const useScrollY = () => {
         const currentScrollY = isBrowser ? window.scrollY : 0;
         setScrollY(currentScrollY);
     };
+    
     useEffect(()=> {
         window.addEventListener('scroll', handleScroll, { passive: true});
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []); 
+    }, []);
+
     return scrollY
 };

@@ -1,12 +1,13 @@
 import React, {useContext, useState} from 'react';
 import {Context} from '../index';
-import {REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE} from '../utils/consts';
-import {NavLink, useLocation, useHistory, Link} from "react-router-dom";
-import './Auth.sass';
+import {SHOP_ROUTE} from '../utils/consts';
+import {useHistory} from "react-router-dom";
 import {registration, login} from '../http/userApi';
 import { observer } from 'mobx-react-lite';
+import './Auth.sass';
 
 const Auth = observer( ({setShowModal}) => {
+
     const {user} = useContext(Context)
     const history = useHistory()
     const [isLogin, setIsLogin] = useState(true)
@@ -15,17 +16,21 @@ const Auth = observer( ({setShowModal}) => {
 
     const click = async () => {
         try {
+
         setShowModal(false)
         let data;
+
         if (isLogin) {
             const data = await login(email, password)
             User(data);
         } else {
             const data = await registration(email, password)
         }
+
         user.setUser(user)
         user.setIsAuth(true)
         history.push(SHOP_ROUTE)
+        
         } catch (e) {
             alert(e.response.data.message)
         }

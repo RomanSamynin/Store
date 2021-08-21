@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, useMemo} from 'react';
+import React, {useState, useContext} from 'react';
 import {Context} from '../index';
 import { observer } from 'mobx-react-lite';
 import Header from '../components/header';
@@ -6,15 +6,13 @@ import Footer from '../components/footer';
 import BasketItem from '../components/basket/basketItem'
 import Pop_up from '../components/pop-up/pop-up';
 import {createBasket} from "../http/basketApi";
-import { fetchOneDevice } from '../http/deviceApi';
-import { ADMIN_ROUTE, INSPIRATIONS_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, BASKET_ROUTE } from '../utils/consts';
+import { SHOP_ROUTE } from '../utils/consts';
 import {Redirect} from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import './Basket.sass';
 
-
-
 const Message = () => {
+
     const {user} = useContext(Context)
 
     let style_Children = {
@@ -23,6 +21,7 @@ const Message = () => {
         fontWeight: "bold",
         textAlign: "center"
     }
+
     return (
         <>
         {user.isAuth ?
@@ -39,24 +38,19 @@ const Message = () => {
     )
 }
 
-
-
-
 const Basket = observer( () => {
+
     const {basket} = useContext(Context)
     const {user} = useContext(Context)
     const [showModal, setShowModal] = useState(false) 
 
     let newTotalPrice = basket.totalPrice.map( item => item.price )
-
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
-
     let total = newTotalPrice.reduce(reducer, 0);
-
     let valueUser = jwt_decode(localStorage.getItem('token')).id;
 
- 
     let click = async () => {
+
         if (user.isAuth) {
 
             await basket.basket.map(async e => {

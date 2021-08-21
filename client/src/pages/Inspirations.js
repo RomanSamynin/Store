@@ -3,7 +3,6 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import './inspiration.sass';
 
-
 const Inspirations = () => {
 
     return (

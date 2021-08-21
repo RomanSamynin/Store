@@ -6,6 +6,7 @@ import './pages.sass'
 
 const Pages = observer(() => {
     const {device} = useContext(Context)
+    
     const pageCount = Math.ceil(device.totalCount / device.limit)
     const pages = []
 
