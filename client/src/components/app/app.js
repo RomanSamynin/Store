@@ -14,7 +14,6 @@ const App = observer(() => {
 
     const [loading, setLoading] = useState(true)
  
-
     useEffect(() => {
         check().then(data => {
             user.setUser(true)

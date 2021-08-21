@@ -9,6 +9,7 @@ import {fetchTypes} from '../http/deviceApi';
 import {fetchBrands} from '../http/deviceApi';
 import {fetchDevices} from '../http/deviceApi';
 
+
 const Shop = observer( () => {
     const {device} = useContext(Context)
     const {basket} = useContext(Context)

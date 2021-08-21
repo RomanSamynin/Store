@@ -4,18 +4,48 @@ import { observer } from 'mobx-react-lite';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import BasketItem from '../components/basket/basketItem'
+import Pop_up from '../components/pop-up/pop-up';
 import {createBasket} from "../http/basketApi";
 import { fetchOneDevice } from '../http/deviceApi';
 import { ADMIN_ROUTE, INSPIRATIONS_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, BASKET_ROUTE } from '../utils/consts';
 import {Redirect} from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import './Basket.sass';
+
+
+
+const Message = () => {
+    const {user} = useContext(Context)
+
+    let style_Children = {
+        color: "#E89F71",
+        fontSize: "20px",
+        fontWeight: "bold",
+        textAlign: "center"
+    }
+    return (
+        <>
+        {user.isAuth ?
+            <div style={style_Children}>
+                Thanks for your order!
+            </div>
+            :
+            <div style={style_Children}>
+                Please, log in!
+            </div>
+        }
+    </>
+
+    )
+}
+
+
 
 
 const Basket = observer( () => {
     const {basket} = useContext(Context)
     const {user} = useContext(Context)
-    const [response, setResponse] = useState()
-    
+    const [showModal, setShowModal] = useState(false) 
 
     let newTotalPrice = basket.totalPrice.map( item => item.price )
 
@@ -23,40 +53,39 @@ const Basket = observer( () => {
 
     let total = newTotalPrice.reduce(reducer, 0);
 
-
-
- 
-
-    let valueUser = JSON.parse(localStorage.getItem('UserID'));
+    let valueUser = jwt_decode(localStorage.getItem('token')).id;
 
  
-    let click = () => {
-        basket.basket.map(e => {
-            for (let i = 0; i < e.count; i++) { 
-                createBasket({deviceId: e.id, basketId: valueUser}).then(data => {
-                    console.log(data)
-                    if(data !== undefined) {
-                        setResponse(1)
-                    } else {
-                        return setResponse(2) 
-                    }
+    let click = async () => {
+        if (user.isAuth) {
+
+            await basket.basket.map(async e => {
+                for (let i = 0; i < e.count; i++) { 
+                    await createBasket({deviceId: e.id, basketId: valueUser}).then(data => {
+                        return console.log(data)
+                    })
+                }
+            })
+
+            await setShowModal(true)
+
+            let clear = () => {
+                basket.basket.map(e => {
+                    basket.deleteBasket(e.id)
                 })
             }
-        })
-    }
-  
 
-    useEffect(() => {
-        if(response === 1) {
-            console.log("ОК") 
-        } else if(response === 2) {
-            console.log("bad")
-        }
-    }, [response, setResponse])
+            await setTimeout(clear, 3000)
+
+        } else {
+            setShowModal(true)
+        }  
+    }
 
     return (
         <div>
             <div className="header_bg">
+            <Pop_up showModal={showModal} setShowModal={setShowModal} Children={Message}/>
                 <Header/>
                     <div className="wrapper">
                         <div className="basket_box">

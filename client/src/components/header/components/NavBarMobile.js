@@ -6,6 +6,7 @@ import {observer} from 'mobx-react-lite';
 import {Context} from '../../../index';
 import {useHistory} from 'react-router-dom';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+import jwt_decode from "jwt-decode";
 import './NavBarMobile.sass';
 import './NavBar.sass';
 import { MenuToggle } from './menuToggle';
@@ -13,11 +14,13 @@ import { MenuToggle } from './menuToggle';
 
 
 
-const NavBarMobile = observer( (props) => {
+const NavBarMobile = observer( ({setShowModal}) => {
     const {user} = useContext(Context)
     const {device} = useContext(Context)
     const history = useHistory()
     const {basket} = useContext(Context)
+
+    let role = jwt_decode(localStorage.getItem('token')).role
 
     const logOut = () => {
         user.setUser({})
@@ -82,34 +85,6 @@ const NavBarMobile = observer( (props) => {
                                 }
                             </NavLink>
                         </div>
-                        {/* {user.isAuth ?
-                            <div className="btn_Auth col-2">
-                                <button 
-                                    className="btn_Auth_item"
-                                    variant={"outline-light"} 
-                                    onClick={() => history.push(ADMIN_ROUTE)}
-                                    >
-                                        Админ панель
-                                </button>
-                                <button 
-                                    className="btn_Auth_item"
-                                    variant={"outline-light"}
-                                    onClick={() => logOut()}
-                                    >
-                                        Выйти
-                                </button>
-                            </div>
-                            :
-                            <div className="btn_Auth col-1">
-                                <button
-                                    className="btn_Auth_item" 
-                                    variant={"outline-light"} 
-                                    onClick={() => history.push(LOGIN_ROUTE)}
-                                >
-                                    Авторизация
-                                </button>
-                            </div>
-                        } */}
                         <MenuToggle className="col-1" isOpen={isOpen} toggle={() => setOpen(!isOpen)}/>                  
                     </div>
                     <AnimatePresence exitBeforeEnter>
@@ -217,6 +192,35 @@ const NavBarMobile = observer( (props) => {
                                 </ul>
                             </nav>
                         </div>
+                        {user.isAuth ?
+                                <div className="btn_Auth_mobile">
+                                    {role == "ADMIN" ?
+                                        <button 
+                                            className="btn_Auth_item_mobile btn_Auth_item_mobile-left"
+                                            onClick={() => {history.push(ADMIN_ROUTE); setOpen(false)}}
+                                            >
+                                                Admin
+                                        </button>
+                                        :
+                                        <></>
+                                    }
+                                    <button 
+                                        className="btn_Auth_item_mobile"
+                                        onClick={() => {logOut(); setOpen(false)}}
+                                        >
+                                            Log Out
+                                    </button>
+                                </div>
+                                :
+                                <div className="btn_Auth_mobile">
+                                    <button
+                                        className="btn_Auth_item_mobile" 
+                                        onClick={() => {setShowModal(true); setOpen(false)}}
+                                    >
+                                        Log In
+                                    </button>
+                                </div>
+                            } 
                     </motion.div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import {observer} from 'mobx-react-lite';
 import {Context} from '../../../index';
 import {useHistory} from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
+import jwt_decode from "jwt-decode";
 import iconHeart from './content/Heart.svg';
 import './NavBar.sass';
 
@@ -22,7 +23,9 @@ const Navbar = observer( ({setShowModal}) => {
         user.setUser({})
         user.setIsAuth(false)
     }
-    
+
+    let role = jwt_decode(localStorage.getItem('token')).role
+
     // Animation header
 
     const [shouldShowActions, sethouldShowActions] = useState(true);
@@ -139,26 +142,27 @@ const Navbar = observer( ({setShowModal}) => {
                             </div>
                             {user.isAuth ?
                                 <div className="btn_Auth col-2">
-                                    <button 
-                                        className="btn_Auth_item"
-                                        variant={"outline-light"} 
-                                        onClick={() => history.push(ADMIN_ROUTE)}
-                                        >
-                                            &
-                                    </button>
+                                    {role == "ADMIN" ?
+                                        <button 
+                                            className="btn_Auth_item"
+                                            onClick={() => history.push(ADMIN_ROUTE)}
+                                            >
+                                                &
+                                        </button>
+                                        :
+                                        <></>
+                                    }
                                     <button 
                                         className="btn_Auth_item btnStyle"
-                                        variant={"outline-light"}
                                         onClick={() => logOut()}
                                         >
-                                            Sign Out
+                                            Log Out
                                     </button>
                                 </div>
                                 :
                                 <div className="btn_Auth col-1">
                                     <button
                                         className="btn_Auth_item btnStyle" 
-                                        variant={"outline-light"} 
                                         onClick={() => setShowModal(true)}
                                     >
                                         Log In
