@@ -4,6 +4,7 @@ import {SHOP_ROUTE} from '../utils/consts';
 import {useHistory} from "react-router-dom";
 import {registration, login} from '../http/userApi';
 import { observer } from 'mobx-react-lite';
+import jwt_decode from "jwt-decode";
 import './Auth.sass';
 
 const Auth = observer( ({setShowModal}) => {
@@ -30,6 +31,7 @@ const Auth = observer( ({setShowModal}) => {
         user.setUser(user)
         user.setIsAuth(true)
         history.push(SHOP_ROUTE)
+        user.setUserRole(jwt_decode(localStorage.getItem('token')).role)
         
         } catch (e) {
             alert(e.response.data.message)

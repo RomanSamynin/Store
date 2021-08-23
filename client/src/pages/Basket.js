@@ -47,12 +47,14 @@ const Basket = observer( () => {
     let newTotalPrice = basket.totalPrice.map( item => item.price )
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     let total = newTotalPrice.reduce(reducer, 0);
-    let valueUser = jwt_decode(localStorage.getItem('token')).id;
+
 
     let click = async () => {
 
         if (user.isAuth) {
 
+            let valueUser = jwt_decode(localStorage.getItem('token')).id;
+            
             await basket.basket.map(async e => {
                 for (let i = 0; i < e.count; i++) { 
                     await createBasket({deviceId: e.id, basketId: valueUser}).then(data => {

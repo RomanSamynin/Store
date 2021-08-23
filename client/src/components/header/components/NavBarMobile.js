@@ -14,12 +14,12 @@ import { MenuToggle } from './menuToggle';
 const NavBarMobile = observer( ({setShowModal}) => {
     const {user} = useContext(Context)
     const {device} = useContext(Context)
-    const history = useHistory()
     const {basket} = useContext(Context)
-
-    let role = jwt_decode(localStorage.getItem('token')).role
+    const history = useHistory()
+    console.log(user.userRole)
 
     const logOut = () => {
+        user.setUserRole(jwt_decode(localStorage.getItem('token')).role)
         user.setUser({})
         user.setIsAuth(false)
     }
@@ -34,7 +34,7 @@ const NavBarMobile = observer( ({setShowModal}) => {
         if (!isOpen) {
             setOpenSerch(false)
         }
-    },);
+    });
 
 // Animation arr header
     const controls = useAnimation();
@@ -188,7 +188,7 @@ const NavBarMobile = observer( ({setShowModal}) => {
                         </div>
                         {user.isAuth ?
                                 <div className="btn_Auth_mobile">
-                                    {role == "ADMIN" ?
+                                    {user.userRole == "ADMIN" ?
                                         <button 
                                             className="btn_Auth_item_mobile btn_Auth_item_mobile-left"
                                             onClick={() => {history.push(ADMIN_ROUTE); setOpen(false)}}
