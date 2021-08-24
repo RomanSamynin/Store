@@ -77,7 +77,7 @@ const ProductCardsItem = observer( ({device}) => {
                         </div>
                     </div>
                     {/* <div className="discount"><div className="discount_descr"></div></div> */}
-                    <img className="product_card_img" src={process.env.REACT_APP_API_URL + device.img}></img>
+                    <img className="product_card_img" src={process.env.REACT_APP_API_URL + "api/" + device.img}></img>
                     <div className="discription">
                         <h1>{device.name}</h1>
                         <h3>Price {device.price} $</h3>

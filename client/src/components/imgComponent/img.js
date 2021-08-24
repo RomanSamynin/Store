@@ -26,7 +26,7 @@ const Image = ({Device, UpdateOpenHeader}) => {
       />
       <motion.img
         className="productPage_img_item"
-        src={process.env.REACT_APP_API_URL + Device.img}
+        src={process.env.REACT_APP_API_URL + "api/" + Device.img}
         alt="Product"
         onClick={() => setOpen(!isOpen)}
         layoutTransition={transition}

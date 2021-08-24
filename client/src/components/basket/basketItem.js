@@ -44,7 +44,7 @@ const Basket = observer( ({Basket}) => {
                             Х
                         </button>
                     }
-                    <img className="imgBasket" src={process.env.REACT_APP_API_URL + device.img}></img>
+                    <img className="imgBasket" src={process.env.REACT_APP_API_URL + "api/" + device.img}></img>
                     <div className="counterBasket">
                         <div className="nameBasket">{device.name}</div>
                         <div className="counterMobile">
